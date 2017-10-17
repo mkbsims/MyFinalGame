@@ -12,6 +12,13 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+ /*
+ * This is a test to see if I have figured out what I am doing with the
+ * GitHub uploads
+ */
+
+
 function display_card() {
     var card_image = $('.card');
     shuffle (card_types);
