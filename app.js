@@ -13,19 +13,13 @@
  *   - add each card's HTML to the page
  */
 
- /*
- * This is a test to see if I have figured out what I am doing with the
- * GitHub uploads
- */
-
-
-function display_card() {
+ function display_card() {
     var card_image = $('.card');
     shuffle (card_types);
     for (var i = 0 ; i <= card_types.length ; i++ ) {
       card_image.children = card_types[i];
       card_image.children.html ('<i class = fa fa-'+ card_types +'></i>');
-    return card_types;
+    return card_image;
     }
 };
 
