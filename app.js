@@ -1,30 +1,17 @@
 /*
- * Create a list that holds all of your cards
+ * Defines all the global variables, including the list of card pictures
  */
- var card_types = ["diamond", "diamond", "paper-plane-o", "paper-plane-o",
-"anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle",
-"bicycle", "diamond", "diamond", "bomb", "bomb"];
+var cardPics = ["diamond", "diamond", "paper-plane-o", "paper-plane-o","anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle","bicycle", "diamond", "diamond", "bomb", "bomb"];
+var deck = $('.deck');  //converts the deck class in the HTML to an object in JavaScript for manipulation//
+var matches = 0; //sets matches to 0 //
+var moves = 0; // sets moves to 0 //
+var moveNum = $('.moves'); // converts the class moves in the HTML to an object in JavaScript for manipulation //
+var starRating = $('i'); //converts the i tag in the HTML to a object in JS //
 
 
 /*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
- function display_card() {
-    var card_image = $('.card');
-    shuffle (card_types);
-    for (var i = 0 ; i <= card_types.length ; i++ ) {
-      card_image.children = card_types[i];
-      card_image.children.html ('<i class = fa fa-'+ card_types +'></i>');
-    return card_image;
-    }
-};
-
-
-// Shuffle function from http://stackoverflow.com/a/2450976
+* Defines the Shuffle function from http://stackoverflow.com/a/2450976
+*/
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -41,6 +28,31 @@ function shuffle(array) {
 
 
 /*
+* Defines the initialize game function. Steps: Cards are shuffled, the deck is removed of
+* current children, the move and matches counters are set to 0, converts the moveNum to text
+* that can be used not HTML, resets the stars back to all 3 filled in, and resets the
+* deck with the shuffled images face down, is ready to look for mouse actions as
+* defined by cardListen function already defined
+*/
+function gameInit () {
+    var cardFace = shuffle (cardPics);
+    deck.empty();
+    matches = 0;
+    moves = 0;
+    moveNum.text ('0');
+    starRating.removeClass ('fa-star-o'). addClass ('fa-star');
+      for (var i = 0 ; i < cardFace.length ; i++ ) {
+        deck.append ($('<li class = "card"><i class = "fa fa-' + cardFace [i] + '"></i></li>'))
+      }
+      cardListen();
+};
+
+
+
+
+
+
+/*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
@@ -50,5 +62,3 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
- display_card();
