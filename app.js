@@ -29,10 +29,11 @@ function shuffle(array) {
 * Defines the event listener for flipping and matching cards
 */
 var cardListen = function() {
+    //card listener for flipping cards//
     $deck.find('.card:not(".match, .open")').on('click' , function (){
-        
-    })
-}
+      
+    });
+};
 
 /*
 * Defines the initialize game function.
@@ -43,10 +44,12 @@ function gameInit () {
     matches = 0;
     moves = 0;
     $moveNum.text ('0');
+    //setting the stars back to all 3//
     $starRating.removeClass('fa-star-o').addClass('fa-star');
       for (var i = 0 ; i < cardFace.length ; i++ ) {
         deck.append ($('<li class = "card"><i class = "fa fa-' + cardFace [i] + '"></i></li>'))
       }
+      //calls function for event listener for flipping the cards//
       cardListen();
 };
 
