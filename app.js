@@ -1,13 +1,12 @@
 /*
- * Defines all the global variables, including the list of card pictures
+ * Defines all the global variables.
  */
-var cardPics = ["diamond", "diamond", "paper-plane-o", "paper-plane-o","anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle","bicycle", "diamond", "diamond", "bomb", "bomb"];
-var deck = $('.deck');  //converts the deck class in the HTML to an object in JavaScript for manipulation//
-var matches = 0; //sets matches to 0 //
-var moves = 0; // sets moves to 0 //
-var moveNum = $('.moves'); // converts the class moves in the HTML to an object in JavaScript for manipulation //
-var starRating = $('i'); //converts the i tag in the HTML to a object in JS //
-
+var cardPics = ["diamond", "diamond", "paper-plane-o", "paper-plane-o","anchor", "anchor", "bolt", "bolt", "cube", "cube", "leaf", "leaf", "bicycle","bicycle", "diamond", "diamond", "bomb", "bomb"],
+  $deck = $('.deck'),
+  matches = 0,
+  moves = 0,
+  $moveNum = $('.moves'),
+  $starRating = $('i');
 
 /*
 * Defines the Shuffle function from http://stackoverflow.com/a/2450976
@@ -26,21 +25,25 @@ function shuffle(array) {
     return array;
 }
 
+/*
+* Defines the event listener for flipping and matching cards
+*/
+var cardListen = function() {
+    $deck.find('.card:not(".match, .open")').on('click' , function (){
+        
+    })
+}
 
 /*
-* Defines the initialize game function. Steps: Cards are shuffled, the deck is removed of
-* current children, the move and matches counters are set to 0, converts the moveNum to text
-* that can be used not HTML, resets the stars back to all 3 filled in, and resets the
-* deck with the shuffled images face down, is ready to look for mouse actions as
-* defined by cardListen function already defined
+* Defines the initialize game function.
 */
 function gameInit () {
     var cardFace = shuffle (cardPics);
-    deck.empty();
+    $deck.empty();
     matches = 0;
     moves = 0;
-    moveNum.text ('0');
-    starRating.removeClass ('fa-star-o'). addClass ('fa-star');
+    $moveNum.text ('0');
+    $starRating.removeClass('fa-star-o').addClass('fa-star');
       for (var i = 0 ; i < cardFace.length ; i++ ) {
         deck.append ($('<li class = "card"><i class = "fa fa-' + cardFace [i] + '"></i></li>'))
       }
